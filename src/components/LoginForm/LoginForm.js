@@ -41,6 +41,22 @@ export default class LoginForm extends Component {
     firebase.initializeApp(config);
   }
 
+  onLoginSuccess() {
+    this.setState({
+      email: '',
+      password: '',
+      error: '',
+      isLoading: false,
+    });
+  }
+
+  onLoginFail() {
+    this.setState({
+      error: 'Authentication Failed.',
+      isLoading: false,
+    });
+  }
+
   handleChangeEmail = (email) => {
     this.setState({ email });
   }
@@ -58,16 +74,12 @@ export default class LoginForm extends Component {
     });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(this.onLoginSuccess.bind(this))
       .catch(() => {
         // Seems that there is no this account
         firebase.auth().createUserWithEmailAndPassword(email, password)
-          .catch(() => {
-            // Failed to create a new account
-            this.setState({
-              error: 'Authentication Failed.',
-              isLoading: false,
-            });
-          });
+          .then(this.onLoginSuccess.bind(this))
+          .catch(this.onLoginFail.bind(this));
       });
   }
 
