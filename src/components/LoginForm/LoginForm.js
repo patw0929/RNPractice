@@ -12,6 +12,7 @@ export default class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
+      error: '',
     };
   }
 
@@ -21,6 +22,22 @@ export default class LoginForm extends Component {
 
   handleChangePassword = (password) => {
     this.setState({ password });
+  }
+
+  handleLogin = () => {
+    const { email, password } = this.state;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(() => {
+        // Seems that there is no this account
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .catch(() => {
+            // Failed to create a new account
+            this.setState({
+              error: 'Authentication Failed.',
+            });
+          });
+      });
   }
 
   render() {
@@ -46,7 +63,7 @@ export default class LoginForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={ this.handleLogin }>
             Login
           </Button>
         </CardSection>
