@@ -50,6 +50,8 @@ export default class LoginForm extends Component {
   handleLogin = () => {
     const { email, password } = this.state;
 
+    this.setState({ error: '' });
+
     firebase.auth().signInWithEmailAndPassword(email, password)
       .catch(() => {
         // Seems that there is no this account
