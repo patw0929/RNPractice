@@ -4,13 +4,14 @@ import firebase from 'firebase';
 import Header from './components/Header/Header';
 import Button from './components/Button/Button';
 import LoginForm from './components/LoginForm/LoginForm';
+import Spinner from './components/Spinner/Spinner';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      loggedIn: null,
     };
   }
 
@@ -39,25 +40,32 @@ class App extends Component {
     });
   }
 
-  renderLoginForm() {
-    if (this.state.loggedIn) {
-      return (
-        <Button>
-          Logout
-        </Button>
-      );
-    }
+  handleLogoutButton = () => {
+    firebase.auth().signOut();
+  }
 
-    return (
-      <LoginForm />
-    );
+  renderAuthUI() {
+    switch (this.state.loggedIn) {
+      case true:
+        return (
+          <Button onPress={ this.handleLogoutButton }>Logout</Button>
+        );
+
+      case false:
+        return (
+          <LoginForm />
+        );
+
+      default:
+        return <Spinner />;
+    }
   }
 
   render() {
     return (
       <View>
         <Header title="Authentication" />
-        { this.renderLoginForm() }
+        { this.renderAuthUI() }
       </View>
     );
   }
