@@ -10,12 +10,12 @@ export default class LoginForm extends Component {
     super(props);
 
     this.state = {
-      text: '',
+      email: '',
     };
   }
 
-  handleChangeText = (text) => {
-    this.setState({ text });
+  handleChangeEmail = (text) => {
+    this.setState({ email: text });
   }
 
   render() {
@@ -23,9 +23,9 @@ export default class LoginForm extends Component {
       <Card>
         <CardSection>
           <Input
-            onChangeText={ this.handleChangeText }
+            onChangeText={ this.handleChangeEmail }
             label="Email"
-            placeholder="Please enter your E-mail"
+            placeholder="user@mail.com"
           />
         </CardSection>
 
