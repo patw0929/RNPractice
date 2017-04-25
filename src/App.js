@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import Header from './components/Header/Header';
+import Card from './components/Card/Card';
+import CardSection from './components/Card/CardSection';
 import Button from './components/Button/Button';
 import LoginForm from './components/LoginForm/LoginForm';
 import Spinner from './components/Spinner/Spinner';
@@ -48,7 +50,13 @@ class App extends Component {
     switch (this.state.loggedIn) {
       case true:
         return (
-          <Button onPress={ this.handleLogoutButton }>Logout</Button>
+          <Card>
+            <CardSection>
+              <Button onPress={ this.handleLogoutButton }>
+                Logout
+              </Button>
+            </CardSection>
+          </Card>
         );
 
       case false:
