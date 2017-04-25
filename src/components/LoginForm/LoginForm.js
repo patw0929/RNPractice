@@ -5,6 +5,14 @@ import Card from '../Card/Card';
 import CardSection from '../Card/CardSection';
 import Input from '../Input/Input';
 
+const styles = {
+  errorText: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red',
+  },
+};
+
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +70,7 @@ export default class LoginForm extends Component {
           />
         </CardSection>
 
-        <Text>
+        <Text style={ styles.errorText }>
           {this.state.error}
         </Text>
 
