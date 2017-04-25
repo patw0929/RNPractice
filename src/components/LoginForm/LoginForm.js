@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Text } from 'react-native';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import CardSection from '../Card/CardSection';
@@ -61,6 +61,10 @@ export default class LoginForm extends Component {
             secureTextEntry
           />
         </CardSection>
+
+        <Text>
+          {this.state.error}
+        </Text>
 
         <CardSection>
           <Button onPress={ this.handleLogin }>
