@@ -23,11 +23,12 @@ const styles = {
   },
 };
 
-const Input = ({ label, value, onChangeText, placeholder }) => {
+const Input = ({ label, value, onChangeText, placeholder, secureTextEntry = false }) => {
   return (
     <View style={ styles.wrapper }>
       <Text style={ styles.label }>{ label }</Text>
       <TextInput
+        secureTextEntry={ secureTextEntry }
         autoCorrect={ false }
         style={ styles.textInput }
         value={ value }

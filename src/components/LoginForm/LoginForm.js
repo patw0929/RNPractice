@@ -41,6 +41,7 @@ export default class LoginForm extends Component {
             label="Password"
             placeholder="password"
             value={ this.state.password }
+            secureTextEntry
           />
         </CardSection>
 
