@@ -11,11 +11,16 @@ export default class LoginForm extends Component {
 
     this.state = {
       email: '',
+      password: '',
     };
   }
 
-  handleChangeEmail = (text) => {
-    this.setState({ email: text });
+  handleChangeEmail = (email) => {
+    this.setState({ email });
+  }
+
+  handleChangePassword = (password) => {
+    this.setState({ password });
   }
 
   render() {
@@ -25,11 +30,18 @@ export default class LoginForm extends Component {
           <Input
             onChangeText={ this.handleChangeEmail }
             label="Email"
+            value={ this.state.email }
             placeholder="user@mail.com"
           />
         </CardSection>
 
         <CardSection>
+          <Input
+            onChangeText={ this.handleChangePassword }
+            label="Password"
+            placeholder="password"
+            value={ this.state.password }
+          />
         </CardSection>
 
         <CardSection>
