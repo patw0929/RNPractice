@@ -5,7 +5,7 @@ import ListScreen from './ListScreen';
 
 const mapStateToProps = (state) => {
   return {
-    albums: state.albums,
+    albums: (state.albums && state.albums.items) || [],
   };
 };
 

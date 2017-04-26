@@ -20,12 +20,29 @@ export default class ListScreen extends Component {
     navigate('Login');
   }
 
+  renderAlbums() {
+    const { albums } = this.props;
+
+    if (!albums) return null;
+
+    return albums.map((album) => {
+      return (
+        <Card key={ album.title }>
+          <CardSection>
+            <Text>{album.title}</Text>
+          </CardSection>
+        </Card>
+      );
+    });
+  }
+
   render() {
     return (
       <View>
         <Card>
           <CardSection>
             <ScrollView>
+              {this.renderAlbums()}
             </ScrollView>
           </CardSection>
 
