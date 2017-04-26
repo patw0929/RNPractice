@@ -10,6 +10,28 @@
 * superagent
 * firebase
 
+## how to run
+
+First, install packages:
+
+```bash
+yarn install
+```
+
+Then, run it on iOS/Android:
+
+iOS:
+
+```bash
+react-native run-ios
+```
+
+Android:
+
+```bash
+react-native run-android
+```
+
 ## features
 
 * 支援 Android & iOS 雙平台
