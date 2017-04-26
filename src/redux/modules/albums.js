@@ -2,7 +2,7 @@ const LOAD = 'patw/albums/LOAD';
 const LOAD_SUCCESS = 'patw/albums/LOAD_SUCCESS';
 const LOAD_FAIL = 'patw/albums/LOAD_FAIL';
 
-const initialState = {};
+const initialState = [];
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_SUCCESS: {
       return {
         ...state,
-        items: action.result.items,
+        items: action.result,
         isFetching: false,
       };
     }
@@ -35,6 +35,6 @@ export default function reducer(state = initialState, action = {}) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: client => client.get('http://rallycoding.herokuapp.com/api/music_albums'),
+    promise: client => client.get('https://rallycoding.herokuapp.com/api/music_albums'),
   };
 }
