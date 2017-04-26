@@ -13,7 +13,6 @@ let enhancer;
 if (__DEV__) {
   const composeEnhancers = composeWithDevTools({
     realtime: true,
-    port: 5678,
   });
 
   enhancer = composeEnhancers(
