@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Card from '../components/Card/Card';
 import CardSection from '../components/Card/CardSection';
@@ -9,6 +9,10 @@ export default class ListScreen extends Component {
   static navigationOptions = {
     title: 'React App',
   };
+
+  componentDidMount() {
+    this.props.loadAlbums();
+  }
 
   handleLogin = () => {
     const { navigate } = this.props.navigation;
@@ -20,6 +24,11 @@ export default class ListScreen extends Component {
     return (
       <View>
         <Card>
+          <CardSection>
+            <ScrollView>
+            </ScrollView>
+          </CardSection>
+
           <CardSection>
             <Button
               onPress={ this.handleLogin }

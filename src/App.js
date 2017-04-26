@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { Provider, connect } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import devToolsEnhancer from 'remote-redux-devtools';
+import { addNavigationHelpers } from 'react-navigation';
 import firebase from 'firebase';
-import ListScreen from './screens/ListScreen';
-import LoginScreen from './screens/LoginScreen';
+import configureStore from './store/configureStore';
+import AppNavigatorContainer from './AppNavigatorContainer';
 
-const App = StackNavigator({
-  List: {
-    screen: ListScreen,
-  },
-  Login: {
-    screen: LoginScreen,
-  },
-});
+const store = configureStore({});
 
-export default App;
+class Root extends Component {
+  render() {
+    return (
+      <Provider store={ store }>
+        <AppNavigatorContainer />
+      </Provider>
+    );
+  }
+}
+
+export default Root;
